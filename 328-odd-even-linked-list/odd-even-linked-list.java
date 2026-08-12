@@ -4,8 +4,8 @@ class Solution {
         if (head == null) return null;
         ListNode d1 = new ListNode(-1);
         ListNode d2 =  new ListNode(-1);
-        ListNode t1 = d1; // for smaller value
-        ListNode t2 = d2; // for larger value
+        ListNode t1 = d1; 
+        ListNode t2 = d2; 
         ListNode t = head;
         int idx = 1;
 
