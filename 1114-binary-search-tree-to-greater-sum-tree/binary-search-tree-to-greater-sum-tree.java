@@ -1,32 +1,23 @@
 class Solution {
-    private void inorder(TreeNode root, List<Integer> ans) {
+    static int sum;
+
+    private void revInorder(TreeNode root) {
         if(root == null) return;
-        inorder(root.left, ans);
-        ans.add(root.val);
-        inorder(root.right, ans);
-    }
 
-    private void replace(TreeNode root, List<Integer> vals) {
-        if(root == null) return;
-        replace(root.left, vals);
+        // Step 1: go right (larger values first)
+        revInorder(root.right);
 
-        // find index of current value in sorted list
-        int idx = vals.indexOf(root.val);
-
-        // compute suffix sum from idx to end
-        int sum = 0;
-        for(int i = idx; i < vals.size(); i++) {
-            sum += vals.get(i);
-        }
+        // Step 2: update sum and node value
+        sum += root.val;
         root.val = sum;
 
-        replace(root.right, vals);
+        // Step 3: go left
+        revInorder(root.left);
     }
 
     public TreeNode bstToGst(TreeNode root) {
-        List<Integer> vals = new ArrayList<>();
-        inorder(root, vals);     // Step 1: collect sorted values
-        replace(root, vals);     // Step 2: update nodes using suffix sums
+        sum = 0;
+        revInorder(root);
         return root;
     }
 }
