@@ -1,4 +1,4 @@
-//method 3 by morris traversal
+//method 3 by morris traversal but with some modification
 class Solution {
     public void flatten(TreeNode root) {
        TreeNode curr = root;
